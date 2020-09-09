@@ -1,0 +1,25 @@
+﻿@using DHTMLX.Scheduler
+@{
+    ViewBag.Title = "DHTMLX Scheduler .NET";
+    var ID = ViewBag.Id;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Appointment Calendar</h2>
+<div class="scheduler_container">
+    @Html.Raw(Model.Render())
+</div>
+
+
+@section Scripts {
+    <script>
+        scheduler.attachEvent("onAfterLightbox", function() {
+            var url = window.location.toString();
+            setTimeout(function() { window.location.href = url.replace("/Calendar/Index", "/Radiographies/Index") },
+                2000);
+        })
+
+
+    </script>
+
+}

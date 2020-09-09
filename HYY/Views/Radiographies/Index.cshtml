@@ -1,0 +1,146 @@
+﻿@using HYY.Enums
+@model IEnumerable<HYY.Models.Radiography>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Radiographies to be assigned</h2>
+
+
+<div id="tabs">
+
+    <ul>
+        <li><a href="#tabs-1">High Priority</a></li>
+        <li><a href="#tabs-2">Normal Priority</a></li>
+        <li><a href="#tabs-3">Low Priority</a></li>
+    </ul>
+
+    <div id="tabs-1">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RadiographyCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.Name)
+                    @Html.DisplayNameFor(model => model.Patient.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IssueDate)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Where(x =>x.Priority == Enums.Priority.High && x.Status == Enums.Status.Created))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RadiographyCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patient.Name)
+                        @Html.DisplayFor(modelItem => item.Patient.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IssueDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Assign Appointment", "Index","Calendar", new {id = item.Id}, new { }) 
+                       
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <div id="tabs-2">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RadiographyCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.Name)
+                    @Html.DisplayNameFor(model => model.Patient.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IssueDate)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Where(x => x.Priority == Enums.Priority.Normal && x.Status == Enums.Status.Created))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RadiographyCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patient.Name)
+                        @Html.DisplayFor(modelItem => item.Patient.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IssueDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Assign Appointment", "Index", "Calendar", new { id = item.Id }, new { }) 
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <div id="tabs-3">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RadiographyCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.Name)
+                    @Html.DisplayNameFor(model => model.Patient.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IssueDate)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Where(x => x.Priority == Enums.Priority.Low && x.Status == Enums.Status.Created))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RadiographyCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patient.Name)
+                        @Html.DisplayFor(modelItem => item.Patient.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IssueDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Assign Appointment", "Index", "Calendar", new { id = item.Id }, new { }) 
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+}

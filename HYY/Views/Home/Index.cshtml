@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    if (!User.Identity.IsAuthenticated)
+    {
+        <img class="frontpic" src="/Content/Images/x-ray-thumbs-up_1600-768x439.jpg" />
+    }
+    <p class="randomtext"><b>When in need of an appointment, contact us at UniPi</b></p>
+    if (User.Identity.IsAuthenticated)
+    {
+
+        <div class="dionmi">
+            <input type="button" class="hospital_buttons" value="Create Radiography" onclick="location.href = '@Url.Action("Create", "Radiographies")'" />
+            <input type="button" class="hospital_buttons" value="Arrange Appointments" onclick="location.href = '@Url.Action("Index", "Radiographies")'" />
+            <input type="button" class="hospital_buttons" value="View Appointments" onclick="location.href = '@Url.Action("Appointment", "Radiographies")'" />
+        </div>
+    }
+}

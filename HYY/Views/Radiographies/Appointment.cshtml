@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HYY.Models.Radiography>
+
+@{
+    ViewBag.Title = "Appointment";
+}
+
+<h2>Appointments</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RadiographyCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appointment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RadiographyCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor.Name)
+            @Html.DisplayFor(modelItem => item.Doctor.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appointment.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.Name)
+            @Html.DisplayFor(modelItem => item.Patient.Surname)
+        </td>
+       
+    </tr>
+}
+
+</table>
